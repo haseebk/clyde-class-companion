@@ -1,0 +1,22 @@
+{
+  "name": "clyde-class-companion",
+  "version": "1.0.0",
+  "description": "a discord bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haseebk/clyde-class-companion.git"
+  },
+  "author": "Haseeb Khan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haseebk/clyde-class-companion/issues"
+  },
+  "homepage": "https://github.com/haseebk/clyde-class-companion#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
