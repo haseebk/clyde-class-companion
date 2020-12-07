@@ -1,11 +1,10 @@
 const Discord = require("discord.js"); // const Discord to communicate with node modules
 
-const { prefix, token } = require('./config.json'); // token and prefix from config file
+const { prefix, token } = require("./config.json"); // token and prefix from config file
 
 const client = new Discord.Client(); // bot instance - Clyde
 
 const fs = require("fs"); // file system
-
 
 client.commands = new Discord.Collection(); // collection of commands
 
@@ -49,22 +48,32 @@ client.on("message", (message) => {
   /**
    * decipher command and store it in command const
    */
-  const commandArgs = message.content.slice(prefix.length).split(/ +/);
-  const command = commandArgs.shift().toLowerCase();
+  const args = message.content.slice(prefix.length).split(/ +/);
+  const commandName = args.shift().toLowerCase();
 
   /**
    * commands
    */
-  if (command == "ping") {
-    client.commands.get("ping").execute(message, commandArgs);
-  } else if (command == "create") {
-    client.commands.get("create").execute(message, commandArgs);
-  } else if (command == "register") {
-    client.commands.get("register").execute(message, commandArgs);
-  } else if (command == "help") {
-    client.commands.get("help").execute(message, commandArgs);
-  } else if (command == "deadline") {
-      client.commands.get("deadline").execute(message, commandArgs);
+  if (!client.commands.has(commandName)) return; // if user entered command does not exist in collection, do nothing.
+
+  const command = client.commands.get(commandName);
+
+  if (command.args && !args.length) {
+    let reply = `No arguments were provided!`;
+
+    if (command.usage) {
+      reply += `\nExpected command usage is: \`${prefix}${command.name} ${command.usage}\``;
+    }
+    return message.channel.send(reply);
+  }
+
+  try {
+    command.execute(message, args);
+  } catch (error) {
+    console.error(error);
+    message.reply(
+      "An error has occurred while trying to execute that command!"
+    );
   }
 });
 
