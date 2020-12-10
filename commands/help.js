@@ -22,9 +22,9 @@ module.exports = {
         if (!command){
             return message.channel.send('That\'s not a valid command!');
         }
-        data.push(`**Name: ** ${command.name}`);
-        if (command.description) data.push(`**Description:** ${command.description}`);
-        if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
+        data.push(`**${command.name}**: ${command.description}`);
+        // if (command.description) data.push(`**Description:** ${command.description}`);
+        if (command.usage) data.push(`**Usage:** \`${prefix}${command.name} ${command.usage}\``);
         
 
         message.channel.send(data, {split: true});
