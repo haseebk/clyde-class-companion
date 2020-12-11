@@ -6,7 +6,7 @@ module.exports = {
     guildOnly: true,
     execute(message, args){
         let role = message.guild.roles.cache.find((role) => role.name === `${args[0]}`);
-        let registered = message.member.roles.cache.has(role.id).catch(console.error);
+        let registered = message.member.roles.cache.has(role.id);
 
         if (role) {
             if (!registered) {
