@@ -72,7 +72,7 @@ client.on("message", (message) => {
   } catch (error) {
     console.error(error);
     message.reply(
-      "An error has occurred while trying to execute that command!"
+      `An error has occurred while trying to execute that command! Please ensure proper comman usage using \`${prefix}help ${command.name}\``
     );
   }
 });
